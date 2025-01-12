@@ -26,6 +26,6 @@ def transform_matrix(DH_table: list, x: int, y: int) -> sp.Matrix:
             'theta': DH_table[i][3],
         })
     
-    T = T @ A_i
+        T = T @ A_i
 
     return T
