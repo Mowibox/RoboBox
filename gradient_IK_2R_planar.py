@@ -56,7 +56,7 @@ def gradient_IK_2R_planar(pd: np.ndarray, q0: np.ndarray, l: np.ndarray,
                 print(f"Final error norm: {error_norm}")
             return q, error_norm, q_lst, e_lst
 
-        q -= alpha * np.dot(J_num.T, e) 
+        q += alpha * np.dot(J_num.T, e) 
         q_lst.append(q)
 
         if verbose:
