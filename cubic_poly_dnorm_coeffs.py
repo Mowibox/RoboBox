@@ -1,6 +1,4 @@
 import sympy as sp
-import numpy as np
-import matplotlib.pyplot as plt
 
 def cubic_poly_dnorm_coeffs(qin: float, qfin: float, vin: float,
                             vfin, T: float, verbose: bool=0) -> tuple:
