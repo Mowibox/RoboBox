@@ -12,7 +12,7 @@ def determinant(M: sp.Matrix):
         print("The matrix is not square:")
         if n - m >= 2:
             det_M = sp.simplify((M.T @ M).det())
-            print("== Determinant of (M.T * M) ==")
+            print("==== Determinant of (M.T * M) ====")
             sp.pprint(det_M)
         
         elif m < n:  # More columns than rows
@@ -21,7 +21,7 @@ def determinant(M: sp.Matrix):
                 Mcopy = M.copy()
                 Mcopy.col_del(i)
                 det_M = sp.simplify(Mcopy.det())
-                print(f"== Determinant of the submatrix with column n°{i+1} removed ==")
+                print(f"==== Determinant of the submatrix with column n°{i+1} removed ====")
                 sp.pprint(det_M)
 
         else:  # More rows than columns
@@ -35,16 +35,16 @@ def determinant(M: sp.Matrix):
                         Mcopy2 = Mcopy.copy()
                         Mcopy2.row_del(j)
                         det_M = sp.simplify(Mcopy2.det())
-                        print(f"== Determinant of submatrix (row n°{i+1} and n°{j+2} removed) ==")
+                        print(f"==== Determinant of submatrix (row n°{i+1} and n°{j+2} removed) ====")
                         sp.pprint(det_M)
             else:
                 det_M = sp.simplify((M.T * M).det())
-                print("== Determinant of (M.T * M) ==")
+                print("==== Determinant of (M.T * M) ====")
                 sp.pprint(det_M)
     
     else:  # Square matrix
         det_M = sp.simplify(M.det())
-        print("== Determinant of the matrix ==")
+        print("==== Determinant of the matrix ====")
         sp.pprint(det_M)   
     
     return det_M

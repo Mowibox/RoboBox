@@ -9,9 +9,9 @@ def find_null(M: sp.Matrix) -> list[sp.Matrix]:
 
     null_space = M.nullspace()
     
-    print("Null space of the matrix:")
+    print("Nullspace of the matrix:")
     if not null_space:
-        print("The null space is trivial (only the zero vector).")
+        print("The nullspace is trivial (only the zero vector).")
         return null_space
 
     for i, vec in enumerate(null_space, start=1):
