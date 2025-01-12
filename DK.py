@@ -1,27 +1,33 @@
 import sympy as sp 
 from transform_matrix import transform_matrix
 
-def DK(DH_table: list) -> dict:
+def DK(DH_table: list, x: int=0, y: int=None) -> dict:
     """
     Computes the Direct Kinematics of a serial robot
 
     @param DH_table: The Denavit-Hartenberg table
+    @param x: Index of the starting joint (inclusive)
+    @param y: Index of the ending joint (inclusive)
     """
-    n_joints = len(DH_table)
+    if y is None:
+        y = len(DH_table)-1
 
-    T0N = transform_matrix(DH_table, 0, n_joints-1)
-    T0N = sp.simplify(T0N)
+    if x < 0 or y >= len(DH_table) or x > y:
+        raise ValueError("Invalid joint indexes. Be sure that 0 <= x <= y < no. of joints.")
+
+    Txy = transform_matrix(DH_table, x, y)
+    Txy = sp.simplify(Txy)
 
     # Position vector
-    p = T0N[:3, 3]
+    p = Txy[:3, 3]
 
     # Orientation axes
-    xN = T0N[:3, 0]
-    yN = T0N[:3, 1]
-    zN = T0N[:3, 2]
+    xN = Txy[:3, 0]
+    yN = Txy[:3, 1]
+    zN = Txy[:3, 2]
 
     return {
-        "T0N": T0N,
+        "Txy": Txy,
         "position": p,
         "x-axis": xN,
         "y-axis": yN,
