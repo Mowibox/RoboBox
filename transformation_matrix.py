@@ -1,7 +1,7 @@
 import sympy as sp
 from DH_matrix import DH_matrix
 
-def transform_matrix(DH_table: list, x: int, y: int) -> sp.Matrix:
+def transformation_matrix(DH_table: list, x: int, y: int) -> sp.Matrix:
     """
     Computes the transformation matrix ^xA_y from joint x to y
 

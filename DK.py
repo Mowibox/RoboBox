@@ -1,5 +1,5 @@
 import sympy as sp 
-from transform_matrix import transform_matrix
+from transformation_matrix import transformation_matrix
 
 def DK(DH_table: list, x: int=0, y: int=None) -> dict:
     """
@@ -15,7 +15,7 @@ def DK(DH_table: list, x: int=0, y: int=None) -> dict:
     if x < 0 or y >= len(DH_table) or x > y:
         raise ValueError("Invalid joint indexes. Be sure that 0 <= x <= y < no. of joints.")
 
-    Txy = transform_matrix(DH_table, x, y)
+    Txy = transformation_matrix(DH_table, x, y)
     Txy = sp.simplify(Txy)
 
     # Position vector
