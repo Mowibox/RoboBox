@@ -5,11 +5,11 @@ def cubic_poly_dnorm_coeffs(qin: float, qfin: float, vin: float,
     """
     Computes the coefficients of a cubic polynomial for joint trajectory (doubly normalized)
 
-    @param qin: Initial joint angle
-    @param qfin: Final joint angle
-    @param vin: Initial velocity
-    @param vfin: Final velocity
-    @param T: Total time
+    @param qin: The initial joint angle
+    @param qfin: The final joint angle
+    @param vin: The initial velocity
+    @param vfin: The final velocity
+    @param T: The total time
     @param verbose: The control flag
     """
     tau = sp.symbols('tau', real=True)

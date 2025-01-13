@@ -1,26 +1,26 @@
 import numpy as np
 import sympy as sp
 import matplotlib.pyplot as plt
-from cubic_poly_dnorm_coeffs import cubic_poly_dnorm_coeffs
+from quintic_poly_dnorm_coeffs import quintic_poly_dnorm_coeffs
 
-def cubic_trajectories(joint_params: list, profile: str='position'):
+def quintic_trajectories(joint_params: list, profile: str='position'):
     """
-    Displays the cubic trajectories for the provided joints
+    Displays the quintic trajectories for the provided joints
     
-    @param joint_params: The joints parameters:  (qin, qfin, vin, vfin, T).
+    @param joint_params: The joints parameters:  (qin, qfin, vin, vfin, ain, afin, T)
     @param profile: The profile displayed: 'position', 'velocity', 'acceleration'
     """
     tau = np.linspace(0, 1, 100)  # Time normalization
 
     if profile == 'position':
         plt.figure(figsize=(10, 6))
-        plt.title("Cubic joint trajectories")
+        plt.title("Quintic joint trajectories")
         plt.xlabel("Normalized Time (τ)")
         plt.ylabel("Position")
         
         for i, params in enumerate(joint_params):
-            qin, qfin, vin, vfin, T = params
-            q_tau, _ = cubic_poly_dnorm_coeffs(qin, qfin, vin, vfin, T)
+            qin, qfin, vin, vfin, ain, afin, T = params
+            q_tau, _ = quintic_poly_dnorm_coeffs(qin, qfin, vin, vfin, ain, afin, T)
             
             # Numerical conversion
             q_tau_func = sp.lambdify(sp.symbols('tau'), q_tau, 'numpy')
@@ -32,19 +32,19 @@ def cubic_trajectories(joint_params: list, profile: str='position'):
     elif profile == "velocity":
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
             
-        ax1.set_title("Cubic joint velocities")
+        ax1.set_title("Quintic joint velocities")
         ax1.set_xlabel("Normalized Time (τ)")
         ax1.set_ylabel("Velocity")
         
-        ax2.set_title("Norm of cubic velocity profiles")
+        ax2.set_title("Norm of quintic velocity profiles")
         ax2.set_xlabel("Normalized Time (τ)")
         ax2.set_ylabel("Velocity")
 
         velocities = []
 
         for i, params in enumerate(joint_params):
-            qin, qfin, vin, vfin, T = params
-            q_tau, _ = cubic_poly_dnorm_coeffs(qin, qfin, vin, vfin, T)
+            qin, qfin, vin, vfin, ain, afin, T = params
+            q_tau, _ = quintic_poly_dnorm_coeffs(qin, qfin, vin, vfin, ain, afin, T)
     
             q_tau_dot = sp.diff(q_tau)
             
@@ -66,19 +66,19 @@ def cubic_trajectories(joint_params: list, profile: str='position'):
     elif profile == "acceleration":
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
             
-        ax1.set_title("Cubic joint accelerations")
+        ax1.set_title("Quintic joint accelerations")
         ax1.set_xlabel("Normalized Time (τ)")
         ax1.set_ylabel("Acceleration")
         
-        ax2.set_title("Norm of cubic acceleration profiles")
+        ax2.set_title("Norm of quintic acceleration profiles")
         ax2.set_xlabel("Normalized Time (τ)")
         ax2.set_ylabel("Acceleration")
 
         accelerations = []
 
         for i, params in enumerate(joint_params):
-            qin, qfin, vin, vfin, T = params
-            q_tau, _ = cubic_poly_dnorm_coeffs(qin, qfin, vin, vfin, T)
+            qin, qfin, vin, vfin, ain, afin, T = params
+            q_tau, _ = quintic_poly_dnorm_coeffs(qin, qfin, vin, vfin, ain, afin, T)
     
             q_tau_dot = sp.diff(q_tau)
             q_tau_ddot = sp.diff(q_tau_dot)
@@ -105,4 +105,3 @@ def cubic_trajectories(joint_params: list, profile: str='position'):
     plt.legend()
 
     plt.show()
-
