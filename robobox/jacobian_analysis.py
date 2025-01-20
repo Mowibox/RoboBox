@@ -1,7 +1,7 @@
 import sympy as sp 
-from find_null import find_null
-from find_range import find_range
-from determinant import determinant
+from .find_null import find_null
+from .find_range import find_range
+from .determinant import determinant
 
 def jacobian_analysis(J: sp.Matrix, variables: list[sp.Symbol]):
     """

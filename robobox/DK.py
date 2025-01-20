@@ -1,5 +1,5 @@
 import sympy as sp 
-from transformation_matrix import transformation_matrix
+from .transformation_matrix import transformation_matrix
 
 def DK(DH_table: list, x: int=0, y: int=None) -> dict:
     """

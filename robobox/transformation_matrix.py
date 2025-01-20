@@ -1,5 +1,5 @@
 import sympy as sp
-from DH_matrix import DH_matrix
+from .DH_matrix import DH_matrix
 
 def transformation_matrix(DH_table: list, x: int, y: int) -> sp.Matrix:
     """

@@ -1,7 +1,7 @@
 import numpy as np
 import sympy as sp
 import matplotlib.pyplot as plt
-from cubic_poly_dnorm_coeffs import cubic_poly_dnorm_coeffs
+from .cubic_poly_dnorm_coeffs import cubic_poly_dnorm_coeffs
 
 def cubic_trajectories(joint_params: list, profile: str='position'):
     """

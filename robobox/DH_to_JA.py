@@ -1,5 +1,5 @@
 import sympy as sp
-from DH_matrix import DH_matrix  
+from .DH_matrix import DH_matrix  
 
 def DH_to_JA(DHTABLE: list, prismatic_joints: list=[]) -> sp.Matrix:
     """

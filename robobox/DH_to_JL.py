@@ -1,6 +1,5 @@
 import sympy as sp
-from DH_matrix import DH_matrix
-from compute_jacobian import compute_jacobian
+from .DH_matrix import DH_matrix
 
 def DH_to_JL(DHTABLE: list, variables: list) -> sp.Matrix:
     """

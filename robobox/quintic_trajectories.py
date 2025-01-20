@@ -1,7 +1,7 @@
 import numpy as np
 import sympy as sp
 import matplotlib.pyplot as plt
-from quintic_poly_dnorm_coeffs import quintic_poly_dnorm_coeffs
+from .quintic_poly_dnorm_coeffs import quintic_poly_dnorm_coeffs
 
 def quintic_trajectories(joint_params: list, profile: str='position'):
     """

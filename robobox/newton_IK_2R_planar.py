@@ -1,18 +1,17 @@
 import sympy as sp
-import numpy as np
-from compute_jacobian import compute_jacobian
+import numpy as np 
+from .compute_jacobian import compute_jacobian
 
-def gradient_IK_2R_planar(pd: np.ndarray, q0: np.ndarray, l: np.ndarray, 
-                          kmax: int=3, eps: float=1e-4, alpha: float=1e-4, verbose: int=1) -> tuple:
+def newton_IK_2R_planar(pd: np.ndarray, q0: np.ndarray, l: np.ndarray, 
+                         kmax: int=3, eps: float=1e-4, verbose: int=1) -> tuple:
     """
-    Computes the 2R planar robot Inverse Kinematics using the Gradient Descent method
+    Computes the 2R plannar robot Inverse Kinematics by using Newton's method
 
     @param pd: The desired end-effector position
-    @param q0: The initial joint angles values
+    @param q0: The inital joint angles values
     @param l: The joint lengths
     @param kmax: The maximum number of iterations
     @param eps: The tolerance for convergence
-    @param alpha: The learning rate
     @param verbose: The control flag
     """
     l1, l2 = l
@@ -35,7 +34,7 @@ def gradient_IK_2R_planar(pd: np.ndarray, q0: np.ndarray, l: np.ndarray,
         if verbose:
             print(f"===== Iteration n°{k+1} =====")
 
-        # Using numerical values of the Jacobia
+        # Using numerical values of the Jacobian
         J_num = np.array([[J_sym[0, 0].subs({theta1: q[0], theta2: q[1], l1_sym: l1, l2_sym: l2}).evalf(),
                            J_sym[0, 1].subs({theta1: q[0], theta2: q[1], l1_sym: l1, l2_sym: l2}).evalf()],
                           [J_sym[1, 0].subs({theta1: q[0], theta2: q[1], l1_sym: l1, l2_sym: l2}).evalf(),
@@ -51,14 +50,13 @@ def gradient_IK_2R_planar(pd: np.ndarray, q0: np.ndarray, l: np.ndarray,
 
         if error_norm <= eps:
             if verbose:
-                print(f"Convergence reached in {k+1} steps")
+                print(f"Converegence reached in {k+1} steps")
                 print(f"Computed joint angles for target position {pd}: (q0, q1) = {q}")
                 print(f"Final error norm: {error_norm}")
             return q, error_norm, q_lst, e_lst
-
-        q += alpha * np.dot(J_num.T, e) 
+        
+        q += np.linalg.pinv(J_num)@e
         q_lst.append(q)
-
         if verbose:
             print(f"(q0, q1) = {q}")
             print(f"Error norm: {error_norm}")
@@ -69,3 +67,7 @@ def gradient_IK_2R_planar(pd: np.ndarray, q0: np.ndarray, l: np.ndarray,
         print(f"Final error norm: {error_norm}")
 
     return q, error_norm, q_lst, e_lst
+
+        
+
+
