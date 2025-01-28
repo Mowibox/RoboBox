@@ -14,6 +14,11 @@ Then, install the robobox library by using pip:
 pip install robobox/
 ```
 
+Another alternative in editable mode:
+```bash
+pip install -e robobox
+```
+
 ## How to use
 
 ### Import examples:
