@@ -11,7 +11,7 @@ cd RoboBox/
 
 Then, install the robobox library by using pip:
 ```bash
-pip install robobox
+pip install robobox/
 ```
 
 ## How to use

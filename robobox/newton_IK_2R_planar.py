@@ -32,7 +32,7 @@ def newton_IK_2R_planar(pd: np.ndarray, q0: np.ndarray, l: np.ndarray,
 
     for k in range(kmax):
         if verbose:
-            print(f"===== Iteration n°{k+1} =====")
+            print(f"===== Iteration n°{k} =====")
 
         # Using numerical values of the Jacobian
         J_num = np.array([[J_sym[0, 0].subs({theta1: q[0], theta2: q[1], l1_sym: l1, l2_sym: l2}).evalf(),
@@ -50,7 +50,7 @@ def newton_IK_2R_planar(pd: np.ndarray, q0: np.ndarray, l: np.ndarray,
 
         if error_norm <= eps:
             if verbose:
-                print(f"Converegence reached in {k+1} steps")
+                print(f"Converegence reached in {k} steps")
                 print(f"Computed joint angles for target position {pd}: (q0, q1) = {q}")
                 print(f"Final error norm: {error_norm}")
             return q, error_norm, q_lst, e_lst
