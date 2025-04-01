@@ -1,7 +1,7 @@
 # RoboBox
 Python module for robotics applications (kinematics, transformations, motions).
 
-![rbb_logo](https://github.com/user-attachments/assets/2612892e-cafa-45ab-93da-e185d7ba2500)
+![rbb_logo](https://github.com/user-attachments/assets/9c4d73d6-e1cc-47de-a747-f253ccc0705f)
 
 ## How to install 
 
